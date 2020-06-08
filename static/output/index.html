@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="start-button">start</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      var startButton = document.getElementById("start-button");
+
+      var synth = window.speechSynthesis;
+      var allVoices = synth.getVoices();
+      var voice = allVoices[Math.floor(allVoices.length * Math.random())];
+
+      function speak(msg) {
+        document.body.innerHTML = msg + "<br>";
+        var utterThis = new SpeechSynthesisUtterance(msg);
+        utterThis.voice = voice;
+        synth.speak(utterThis);
+      }
+
+      startButton.onclick = function () {
+        speak("Eyyyyy");
+      };
+
+      socket.on("msg", speak);
+    </script>
+  </body>
+</html>
