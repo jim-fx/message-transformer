@@ -108,6 +108,8 @@ const allLanguages = [
   "zu",
 ];
 
+let io;
+
 function getTranslateUrl(msg, lang) {
   return (
     "/translate_a/single?client=gtx&sl=auto&tl=" +
@@ -152,6 +154,7 @@ function getRandomLang() {
 function translateToRandom(msg, cb) {
   translate(msg, getRandomLang(), function (result) {
     console.log(msg, "-->", result);
+    io.broadcast("translate", { msg, result });
     cb(result);
   });
 }
@@ -169,6 +172,7 @@ function recursiveTranslate(msg, totalIterations, cb) {
   }
 }
 
-module.exports = (msg, iterations, cb) => {
+module.exports = (_io, msg, iterations, cb) => {
+  io = _io;
   recursiveTranslate(msg, iterations, cb);
 };
