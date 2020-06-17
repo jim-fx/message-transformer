@@ -39,7 +39,6 @@ const allLanguages = [
   "ha",
   "haw",
   "iw",
-  "hi",
   "hmn",
   "hu",
   "is",
