@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        overflow: hidden;
+        background-color: black;
+      }
+
+      #console {
+        position: absolute;
+        color: white;
+        background-color: black;
+        z-index: 99;
+        font-size: 2em;
+        font-family: monospace;
+        padding: 5px;
+      }
+
+      #console::before {
+        content: "receive:";
+      }
+
+      video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        opacity: 0.2;
+      }
+
+      #sampler {
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        border: solid medium red;
+        border-radius: 100%;
+        top: 50vh;
+        left: 50vw;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="console"></div>
+
+    <div id="sampler"></div>
+
+    <canvas></canvas>
+    <video inline autoplay></video>
+    <script src="./app.js"></script>
+  </body>
+</html>
