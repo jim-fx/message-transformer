@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Output Panel</title>
+
+  <link rel="stylesheet" href="stylesheet.css"
 </head>
 
 <body>
@@ -19,21 +21,42 @@
     var voice = allVoices[Math.floor(allVoices.length * Math.random())];
 
     function speak(msg) {
-      document.body.innerHTML = msg + "<br>";
+      document.body.innerHTML += msg + "<br>";
       var utterThis = new SpeechSynthesisUtterance(msg);
       utterThis.voice = voice;
       synth.speak(utterThis);
     }
 
     startButton.onclick = function () {
-      speak("Eyyyyy");
+      this.style.display = "none"
+      speak("Connected to backend router");
+
+      writeToScreen("test");
+      writeToScreen("test");
+      writeToScreen("test");
+      writeToScreen("test");
+      writeToScreen("test");
+
     };
 
     socket.on("msg", speak);
 
     socket.on("translate", function (msg) {
       console.log(msg);
+
+      writeToScreen(msg.msg);
+      writeToScreen(msg.result);
     });
+
+     function writeToScreen(msg){
+      var now = new Date();
+      var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+      document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
+      
+
+    }
+
+
 
   </script>
 </body>

@@ -1,0 +1,34 @@
+body{
+
+    background-color: black;
+
+    color: #ff5752;
+    font-family: 'Courier New', Courier, monospace;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+
+    height: 100vh;
+
+    font-size: 20px;
+}
+
+#start-button{
+    color: red;
+    transition-duration: 0.5s;
+    border-radius: 8px;
+    border: none;
+    font-size: 40px;
+
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    grid-column-start: 2;
+    grid-column-end: 3;
+    }
+
+#start-button:hover{
+    background-color: red;
+    color: black;
+}
