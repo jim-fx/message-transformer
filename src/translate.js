@@ -167,7 +167,10 @@ function recursiveTranslate(msg, totalIterations, cb) {
     });
   } else {
     translateToRandom(msg, function (result) {
-      recursiveTranslate(result, totalIterations - 1, cb);
+      setTimeout(function(){
+        recursiveTranslate(result, totalIterations - 1, cb);
+        
+      }, 2000)
     });
   }
 }

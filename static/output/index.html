@@ -57,16 +57,19 @@
 
     socket.on("translate", function (msg) {
       console.log(msg);
+      
+      var s = msg.msg +" --> "+ msg.result;
 
-      writeToScreen(msg.msg);
+      writeToScreen(s);
       //writeToScreen(msg.result);
+
     });
 
      function writeToScreen(msg){
       var now = new Date();
       var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
       
-      typeWriter.typeString("<br>" + date +" --> " + msg + "<br>");
+      typeWriter.typeString("<br>" + date +" ==> " + msg + "<br>");
       typeWriter.start();
 
       //document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
