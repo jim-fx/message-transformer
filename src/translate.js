@@ -154,7 +154,7 @@ function getRandomLang() {
 function translateToRandom(msg, cb) {
   translate(msg, getRandomLang(), function (result) {
     console.log(msg, "-->", result);
-    io.broadcast("translate", { msg, result });
+    io.sockets.emit("translate", { msg, result });
     cb(result);
   });
 }
