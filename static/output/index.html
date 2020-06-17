@@ -32,6 +32,7 @@
     var typeWriter = new Typewriter('#typeWrapper', {
         autoStart: true,
         devMode: false,
+        delay: 35,
       });
 
     function speak(msg) {
@@ -45,7 +46,7 @@
       this.style.display = "none"
       speak("Connected to backend router");
 
-      //writeToScreen("test1");
+      // writeToScreen("test1");
       // writeToScreen("test2");
       // writeToScreen("test3");
       // writeToScreen("test4");
@@ -57,7 +58,7 @@
 
     socket.on("translate", function (msg) {
       console.log(msg);
-      
+
       var s = msg.msg +" --> "+ msg.result;
 
       writeToScreen(s);
@@ -68,15 +69,15 @@
      function writeToScreen(msg){
       var now = new Date();
       var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
-      
+
       typeWriter.typeString("<br>" + date +" ==> " + msg + "<br>");
       typeWriter.start();
 
       //document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
-      
+
 
     }
-    
+
 
 
 

@@ -4,18 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Input Panel</title>
+    <link rel="stylesheet" href="stylesheet.css"
   </head>
   <body>
+
+    <div id="buttonWrapper">
+
+      <button id="start-listening">listen to meeeee</button>
+
+    </div>
+
+    <div id="typeWrapper">
+
+
+    </div>
     <script src="/socket.io/socket.io.js"></script>
 
-    <input type="text" name="" id="text-input" />
-    <br />
-    <button id="start-listening">listen to meeeee</button>
+
+
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 
     <script>
       var socket = io();
       var inputElement = document.getElementById("text-input");
       var startListenElement = document.getElementById("start-listening");
+
+      var typeWriter = new Typewriter('#typeWrapper', {
+        autoStart: true,
+        devMode: false,
+      });
 
       function sendMessage(msg) {
         socket.emit("msg", msg);
@@ -29,6 +46,8 @@
 
       startListenElement.addEventListener("click", function () {
         speech.start();
+        
+        writeToScreen("Listening to you . . . . . . .")
       });
 
       var currentResultIndex = 0;
@@ -38,12 +57,24 @@
         sendMessage(res);
       };
 
-      inputElement.addEventListener("keydown", function (ev) {
-        if (ev.keyCode === 13) {
-          sendMessage(inputElement.value);
-          inputElement.value = "";
-        }
-      });
+      // inputElement.addEventListener("keydown", function (ev) {
+      //   if (ev.keyCode === 13) {
+      //     sendMessage(inputElement.value);
+      //     inputElement.value = "";
+      //   }
+      // });
+
+      function writeToScreen(msg){
+      var now = new Date();
+      var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+      
+      typeWriter.typeString("<br>" + date +" ==> " + msg + "<br>");
+      typeWriter.start();
+
+      //document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
+      
+
+    }
     </script>
   </body>
 </html>

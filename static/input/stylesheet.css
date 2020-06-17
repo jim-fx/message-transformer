@@ -1,11 +1,8 @@
 body{
-
     background-color: black;
 
     color: #ff5752;
 
-
-    font-size: 20px;
 }
 
 #buttonWrapper{
@@ -22,7 +19,8 @@ body{
     grid-template-rows: auto auto auto;
 }
 
-#start-button{
+#start-listening{
+
     color: red;
     transition-duration: 0.5s;
     border-radius: 8px;
@@ -34,11 +32,9 @@ body{
 
     grid-column-start: 2;
     grid-column-end: 3;
-    }
+}
 
-#start-button:hover{
+#start-listening:hover{
     background-color: red;
     color: black;
 }
-
-
