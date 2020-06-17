@@ -3,15 +3,23 @@ body{
     background-color: black;
 
     color: #ff5752;
+
+
+    font-size: 20px;
+}
+
+#buttonWrapper{
+
+    position: absolute;
+
+    height: 100vh;
+    width: 100vw;
+    color: #ff5752;
     font-family: 'Courier New', Courier, monospace;
 
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
-
-    height: 100vh;
-
-    font-size: 20px;
 }
 
 #start-button{
@@ -32,3 +40,9 @@ body{
     background-color: red;
     color: black;
 }
+
+#typeWrapper{
+
+
+}
+

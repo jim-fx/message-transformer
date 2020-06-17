@@ -10,18 +10,32 @@
 </head>
 
 <body>
-  <button id="start-button">start</button>
+  <div id="buttonWrapper">
+    <button id="start-button">start</button>
+  </div>
+
+  <div id="typeWrapper">
+
+  </div>
+
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
   <script>
     var socket = io();
+
     var startButton = document.getElementById("start-button");
 
     var synth = window.speechSynthesis;
     var allVoices = synth.getVoices();
     var voice = allVoices[Math.floor(allVoices.length * Math.random())];
 
+    var typeWriter = new Typewriter('#typeWrapper', {
+        autoStart: true,
+        devMode: false,
+      });
+
     function speak(msg) {
-      document.body.innerHTML += msg + "<br>";
+      writeToScreen(msg);
       var utterThis = new SpeechSynthesisUtterance(msg);
       utterThis.voice = voice;
       synth.speak(utterThis);
@@ -31,11 +45,11 @@
       this.style.display = "none"
       speak("Connected to backend router");
 
-      writeToScreen("test");
-      writeToScreen("test");
-      writeToScreen("test");
-      writeToScreen("test");
-      writeToScreen("test");
+      //writeToScreen("test1");
+      // writeToScreen("test2");
+      // writeToScreen("test3");
+      // writeToScreen("test4");
+      // writeToScreen("test5");
 
     };
 
@@ -45,16 +59,21 @@
       console.log(msg);
 
       writeToScreen(msg.msg);
-      writeToScreen(msg.result);
+      //writeToScreen(msg.result);
     });
 
      function writeToScreen(msg){
       var now = new Date();
       var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
-      document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
+      
+      typeWriter.typeString("<br>" + date +" --> " + msg + "<br>");
+      typeWriter.start();
+
+      //document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
       
 
     }
+    
 
 
 
