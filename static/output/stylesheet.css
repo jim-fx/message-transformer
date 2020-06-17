@@ -4,4 +4,19 @@ body{
 
     color: #ff5752;
     font-family: 'Courier New', Courier, monospace;
+
+    display: grid;
+}
+
+#start-button{
+    color: red;
+    transition-duration: 0.5s;
+    border-radius: 8px;
+    border: none;
+    font-size: 25px;
+    }
+
+#start-button:hover{
+    background-color: red;
+    color: black;
 }
