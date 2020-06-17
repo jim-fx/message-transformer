@@ -148,7 +148,9 @@ function translate(msg, lang, cb) {
 }
 
 function getRandomLang() {
-  return allLanguages[Math.floor(Math.random() * allLanguages.length)];
+  var language = allLanguages[Math.floor(Math.random() * allLanguages.length)];
+  console.log(language);
+  return language;
 }
 
 function translateToRandom(msg, cb) {
