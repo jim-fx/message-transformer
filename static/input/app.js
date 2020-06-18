@@ -14,7 +14,7 @@ function sendMessage(msg) {
 
   setTimeout(() => {
     writeToScreen("message sent")
-  }, 4000)
+  }, 2000)
 }
 
 socket.on("msg", console.log);
@@ -34,15 +34,13 @@ speech.onresult = function (event) {
   console.log(event);
   var res = event.results[currentResultIndex][0].transcript;
   currentResultIndex++;
-  sendMessage(res);
+  //sendMessage(res);
 };
 
-// inputElement.addEventListener("keydown", function (ev) {
-//   if (ev.keyCode === 13) {
-//     sendMessage(inputElement.value);
-//     inputElement.value = "";
-//   }
-// });
+setTimeout(() => {
+  writeToScreen("I can't breath");
+}, 5000)
+
 
 function writeToScreen(msg) {
   var now = new Date();
