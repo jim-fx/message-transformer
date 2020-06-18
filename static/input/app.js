@@ -23,17 +23,13 @@ var speech = new webkitSpeechRecognition();
 
 speech.continuous = true;
 
-startListenElement.addEventListener("click", function () {
-  speech.start();
-  this.style.display = "none";
-  writeToScreen("Listening to you . . . . . . .")
-});
+startListenElement.style.display = "none";
 
 var currentResultIndex = 0;
 speech.onresult = function (event) {
-  console.log(event);
-  var res = event.results[currentResultIndex][0].transcript;
-  currentResultIndex++;
+  // console.log(event);
+  // var res = event.results[currentResultIndex][0].transcript;
+  // currentResultIndex++;
   //sendMessage(res);
 };
 
