@@ -53,9 +53,14 @@
 
       setTimeout(() => {
 
-        socket.emit("msg", "I can't breathe");
+        writeToScreen("CONNECTED TO API")
 
-        writeToScreen("INTITIALZING TRANSLATOR")
+        writeToScreen("INITIALZING TRANSLATOR")
+
+
+        setTimeout(() => {
+          socket.emit("msg", "I can't breathe");
+        }, 2000)
 
       }, 1000)
 
@@ -76,7 +81,7 @@
 
     function writeToScreen(msg) {
       var now = new Date();
-      var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "  |  " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+      var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "  |  11:40:" + now.getSeconds();
 
       typeWriter.typeString("<br>" + date + " ==> " + msg + "<br>");
       typeWriter.start();
@@ -85,7 +90,6 @@
     }
 
 
-    writeToScreen("CONNECTED TO API")
 
 
   </script>
