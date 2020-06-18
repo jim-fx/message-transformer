@@ -41,7 +41,7 @@ setTimeout(() => {
 
 
   setTimeout(() => {
-    writeToScreen("sending: 'I can't breath'");
+    writeToScreen("sending: 'I can't breathe'");
   }, 5000)
 }, 5000)
 
