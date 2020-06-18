@@ -4,8 +4,9 @@ body{
 
     color: #ff5752;
 
+    font-family: monospace;
 
-    font-size: 20px;
+    font-size: 3em;
 }
 
 #buttonWrapper{

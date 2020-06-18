@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Output Panel</title>
 
-  <link rel="stylesheet" href="stylesheet.css"
-</head>
+  <link rel="stylesheet" href="stylesheet.css" </head>
 
 <body>
   <div id="buttonWrapper">
@@ -30,10 +29,10 @@
     var voice = allVoices[Math.floor(allVoices.length * Math.random())];
 
     var typeWriter = new Typewriter('#typeWrapper', {
-        autoStart: true,
-        devMode: false,
-        delay: 35,
-      });
+      autoStart: true,
+      devMode: false,
+      delay: 35,
+    });
 
     function speak(msg) {
       writeToScreen(msg);
@@ -44,7 +43,7 @@
 
     startButton.onclick = function () {
       this.style.display = "none"
-      speak("Connected to backend router");
+      //speak("Connected to backend router");
 
       // writeToScreen("test1");
       // writeToScreen("test2");
@@ -52,30 +51,37 @@
       // writeToScreen("test4");
       // writeToScreen("test5");
 
+      setTimeout(() => {
+
+        socket.emit("msg", "I can't breathe");
+
+      }, 1000)
+
     };
 
     socket.on("msg", speak);
 
+    socket.on("result", (msg) => {
+      writeToScreen(msg);
+      speak(msg);
+    });
+
     socket.on("translate", function (msg) {
       console.log(msg);
 
-      var s = msg.msg +" --> "+ msg.result;
+      var s = "translated:" + msg.msg + " --> " + msg.result;
+
+      currentMsg++;
 
       writeToScreen(s);
-      //writeToScreen(msg.result);
-
     });
 
-     function writeToScreen(msg){
+    function writeToScreen(msg) {
       var now = new Date();
-      var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+      var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "  |  " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 
-      typeWriter.typeString("<br>" + date +" ==> " + msg + "<br>");
+      typeWriter.typeString("<br>" + date + " ==> " + msg + "<br>");
       typeWriter.start();
-
-      //document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
-
-
     }
 
 

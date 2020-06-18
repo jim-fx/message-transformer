@@ -163,14 +163,13 @@ function translateToRandom(msg, cb) {
 function recursiveTranslate(msg, totalIterations, cb) {
   if (totalIterations < 1) {
     translate(msg, "de", function (result) {
-      console.log("Final: ", result);
       cb(result);
     });
   } else {
     translateToRandom(msg, function (result) {
-      setTimeout(function(){
+      setTimeout(function () {
         recursiveTranslate(result, totalIterations - 1, cb);
-        
+
       }, 2000)
     });
   }
