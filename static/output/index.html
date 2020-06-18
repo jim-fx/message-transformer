@@ -55,6 +55,8 @@
 
         socket.emit("msg", "I can't breathe");
 
+        writeToScreen("INTITIALZING TRANSLATOR")
+
       }, 1000)
 
     };
@@ -62,16 +64,12 @@
     socket.on("msg", speak);
 
     socket.on("result", (msg) => {
-      writeToScreen(msg);
       speak(msg);
     });
 
     socket.on("translate", function (msg) {
-      console.log(msg);
 
-      var s = "translated:" + msg.msg + " --> " + msg.result;
-
-      currentMsg++;
+      var s = msg.msg + " --> " + msg.result;
 
       writeToScreen(s);
     });
@@ -85,6 +83,7 @@
     }
 
 
+    writeToScreen("CONNECTED TO API")
 
 
   </script>
