@@ -33,6 +33,9 @@ speech.onresult = function (event) {
   //sendMessage(res);
 };
 
+writeToScreen("Listening to you...");
+
+
 setTimeout(() => {
   writeToScreen("I can't breath");
 }, 5000)
