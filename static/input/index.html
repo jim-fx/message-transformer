@@ -1,80 +1,85 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Input Panel</title>
-    <link rel="stylesheet" href="stylesheet.css"
-  </head>
-  <body>
 
-    <div id="buttonWrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input Panel</title>
+  <link rel="stylesheet" href="stylesheet.css" </head>
 
-      <button id="start-listening">listen to meeeee</button>
+<body>
 
-    </div>
+  <div id="buttonWrapper">
 
-    <div id="typeWrapper">
+    <button id="start-listening">listen to meeeee</button>
 
+  </div>
 
-    </div>
-    <script src="/socket.io/socket.io.js"></script>
+  <div id="typeWrapper">
 
 
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
 
-    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 
-    <script>
-      var socket = io();
-      var inputElement = document.getElementById("text-input");
-      var startListenElement = document.getElementById("start-listening");
 
-      var typeWriter = new Typewriter('#typeWrapper', {
-        autoStart: true,
-        devMode: false,
-      });
+  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 
-      function sendMessage(msg) {
-        socket.emit("msg", msg);
-      }
+  <script>
+    var socket = io();
+    var inputElement = document.getElementById("text-input");
+    var startListenElement = document.getElementById("start-listening");
 
-      socket.on("msg", console.log);
+    var typeWriter = new Typewriter('#typeWrapper', {
+      autoStart: true,
+      devMode: false,
+    });
 
-      var speech = new webkitSpeechRecognition();
+    function sendMessage(msg) {
+      socket.emit("msg", msg);
+      writeToScreen("sending: " + msg);
+    }
 
-      speech.continuous = true;
+    socket.on("msg", console.log);
 
-      startListenElement.addEventListener("click", function () {
-        speech.start();
-        
-        writeToScreen("Listening to you . . . . . . .")
-      });
+    var speech = new webkitSpeechRecognition();
 
-      var currentResultIndex = 0;
-      speech.onresult = function (event) {
-        var res = event.results[currentResultIndex][0].transcript;
-        currentResultIndex++;
-        sendMessage(res);
-      };
+    speech.continuous = true;
+    speech.interimResults = true;
 
-      // inputElement.addEventListener("keydown", function (ev) {
-      //   if (ev.keyCode === 13) {
-      //     sendMessage(inputElement.value);
-      //     inputElement.value = "";
-      //   }
-      // });
+    startListenElement.addEventListener("click", function () {
+      speech.start();
+      this.style.display = "none";
+      writeToScreen("Listening to you . . . . . . .")
+    });
 
-      function writeToScreen(msg){
+    var currentResultIndex = 0;
+    speech.onresult = function (event) {
+      console.log(event);
+      var res = event.results[currentResultIndex][0].transcript;
+      currentResultIndex++;
+      sendMessage(res);
+    };
+
+    // inputElement.addEventListener("keydown", function (ev) {
+    //   if (ev.keyCode === 13) {
+    //     sendMessage(inputElement.value);
+    //     inputElement.value = "";
+    //   }
+    // });
+
+    function writeToScreen(msg) {
       var now = new Date();
-      var date = now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+"  |  "+ now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
-      
-      typeWriter.typeString("<br>" + date +" ==> " + msg + "<br>");
+      var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "  |  " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+      typeWriter.typeString("<br>" + date + " ==> " + msg + "<br>");
       typeWriter.start();
 
       //document.body.innerHTML += "<br>" + date +" --> " + msg + "<br>";
-      
+
 
     }
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
