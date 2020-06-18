@@ -44,7 +44,7 @@ setTimeout(() => {
 
 function writeToScreen(msg) {
   var now = new Date();
-  var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "  |  " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+  var date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "  |  09:" + now.getMinutes() + ":" + now.getSeconds();
 
   typeWriter.typeString("<br>" + date + " ==> " + msg + "<br>");
   typeWriter.start();
