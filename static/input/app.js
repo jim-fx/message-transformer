@@ -14,7 +14,7 @@ function sendMessage(msg) {
 
   setTimeout(() => {
     writeToScreen("message sent")
-  })
+  }, 4000)
 }
 
 socket.on("msg", console.log);
