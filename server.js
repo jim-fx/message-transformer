@@ -10,7 +10,7 @@ io.on("connection", (socket) => {
   socket.emit("debug", "You are connected");
 
   socket.on("msg", function (msg) {
-    lostInTranslation(io, msg, 5, function (result) {
+    lostInTranslation(io, msg, 10, function (result) {
       console.log("Final: ", result);
 
       socket.emit("result", result);
